@@ -11,7 +11,7 @@ from espositore import Espositore
 class LingottoFiere:
     def __init__(self, nome):
         """Inizializza gli attributi e le strutture dati"""
-        self.nome = nome
+        self._nome = nome
         # Usiamo dei dizionari per cercare stand ed espositori tramite il loro codice
         self.stand = { }
         self.espositori = { }
@@ -19,11 +19,11 @@ class LingottoFiere:
     # Getter e Setter per il nome del centro fieristico
     @property
     def nome(self):
-        return self.nome
+        return self._nome
 
     @nome.setter
     def nome(self, nuovo_nome):
-        self.nome = nuovo_nome
+        self._nome = nuovo_nome
 
     def carica_file_dati(self, file_path):
         """Carica i dati (stand ed espositori) dal file"""
@@ -36,7 +36,7 @@ class LingottoFiere:
                     codice = campi[0]
 
                     # Per gli Stand (iniziano con ST)
-                    if codice.strartswith("ST"):
+                    if codice.startswith("ST"):
                         mq = campi[1]
                         padiglione = campi[2]
                         prezzo = campi[3]
@@ -108,4 +108,4 @@ class LingottoFiere:
 
     def stand_ordinati_per_prezzo(self):
         """Restituisce la lista ordinata degli stand in base al prezzo"""
-        return sorted(self.stand.values(), key=lambda s: s.get_prezzo())
+        return sorted(self.stand.values())

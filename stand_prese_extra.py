@@ -14,4 +14,4 @@ class StandPreseExtra(Stand):
     def __str__(self):
         # Verifichiamo lo stato di assegnazione (come nella classe base)
         stato = "Disponibile" if self.disponibile else f"Assegnato a {self.espositore.codice}"
-        return (f"{self.codice} {self.mq} {self.padiglione} {self.get_prezzo()} {stato}")
+        return f"{self.codice}: Prese Extra | {self.mq} mq - Padiglione {self.padiglione} - Prezzo {self.get_prezzo():.2f}€ - Prese aggiuntive: {self.prese} - {stato}"
